@@ -1,7 +1,6 @@
 {
-  "name": "androidTesting",
+  "name": "react-native-submit-button",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -22,5 +21,25 @@
     "jest": "16.0.2",
     "jest-react-native": "16.0.0",
     "react-test-renderer": "15.3.2"
-  }
+  },
+  "description": "Animated Submit button -  - folds when in progress - expands back when its ready",
+  "main": "index.android.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronak301/react-native-submit-button.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "submit",
+    "button",
+    "animation",
+    "animated"
+  ],
+  "author": "Ronak Kothari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronak301/react-native-submit-button/issues"
+  },
+  "homepage": "https://github.com/ronak301/react-native-submit-button#readme"
 }
