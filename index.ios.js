@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -9,11 +9,16 @@ import {
   Dimensions,
   Easing
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-const { width, height } = Dimensions.get('window');
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-export default class DribbleTest extends Component {
+import LinearGradient from 'react-native-linear-gradient';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const { width, height } = Dimensions.get('window');
+
+console.disableYellowBox = true;
+
+export default class SubmitButton extends Component {
 
   constructor() {
     super();
@@ -26,28 +31,50 @@ export default class DribbleTest extends Component {
     }
   }
 
+  static PropTypes = {
+    width: PropTypes.number
+  }
+
+  static defaultProps = {
+    width: 180
+  }
+
   render() {
+    const { width } = this.props;
     const buttonWidth = this.state.animatedWidth.interpolate({
       inputRange: [0, 1, 2],
-      outputRange: [180, 54, 180]
-    });
-    const textOpacity = this.state.animatedWidth.interpolate({
-      inputRange: [0, 0.5, 1, 1.5, 2],
-      outputRange: [1, 0 , 0, 0, 1],
+      outputRange: [width, 54, width]
     });
     const borderColor = this.state.isLoading ? '#bbbbbb' : 'rgb(30, 205, 151)';
     const borderWidth = this.state.isLoading ? 4 : 4;
-    // const submitText = this.state.isLoading ? '' : 'Submit';
-    const backgroundColor = this.state.isLoading ? 'transparent' : 'white';
+    const backgroundColor = this.state.isLoading ? 'transparent'  :  !this.state.isReady ? 'white' : 'rgb(30, 205, 151)';
+    const buttonBackgroundColor = this.state.isReady ? 'rgb(30, 205, 151)' : 'transparent';
+
     return (
-      <LinearGradient colors={['white', 'white']} style={styles.linearGradient}>
+      <LinearGradient colors={['#F0C27B', '#4B1248']} style={styles.linearGradient}>
         <Animated.View style={[styles.buttonContainer, {width: buttonWidth }]}>
           <TouchableOpacity style={[styles.button, {borderWidth: borderWidth, borderColor: borderColor, backgroundColor: backgroundColor}]} onPress={this.onPressSubmitButton}>
-            <Animated.Text style={[styles.text, {opacity: textOpacity}]}>Submit</Animated.Text>
+            {this.renderBody()}
           </TouchableOpacity>
           {this.renderAnimatedCircle()}
         </Animated.View>
       </LinearGradient>
+    );
+  }
+
+  renderBody = () => {
+    const textColor = this.state.isReady ? 'white' : 'rgb(30, 205, 151)';
+    const textOpacity = this.state.animatedWidth.interpolate({
+      inputRange: [0, 0.5, 1, 1.5, 2],
+      outputRange: [1, 0 , 0, 0, 1],
+    });
+    if (this.state.isReady) {
+      return (
+        <Icon name="check" size={26} color={'white'} />
+      );
+    }
+    return (
+      <Animated.Text style={[styles.text, {opacity: textOpacity, color: textColor}]}>Submit</Animated.Text>
     );
   }
 
@@ -73,14 +100,15 @@ export default class DribbleTest extends Component {
   }
 
   onPressSubmitButton = () => {
-    if (this.state.isLoading) return ;
-    this.setState({isLoading: true}, () => setTimeout(() => { this.refs.circularProgress.performLinearAnimation(100, 1000); this.setState({canShowAnimatedCircle: true}) }, 200 ) );
+    if (this.state.isLoading || this.state.isReady) return ;
+    this.setState({isLoading: true}, () => setTimeout(() => { this.setState({fill: 100, canShowAnimatedCircle: true}) }, 200 ) );
     Animated.timing(this.state.animatedWidth, {
       toValue: 1,
       duration: 200,
       easing: Easing.linear
     }).start();
-    setTimeout(() => {this.setState({isLoading: false, isReady: true}, this.animateWidth)} , 2000)
+    setTimeout(() => {this.setState({isLoading: false, isReady: true}, this.animateWidth)} , 2000);
+    setTimeout(() => {this.setState({isLoading: false, isReady: false, fill: 0}, this.animateWidth)} , 4000);
   }
 
   animateWidth = () => {
@@ -111,11 +139,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    // fontFamily: 'proximanova-regular',
+    fontFamily: 'proximanova-regular',
     color: 'rgb(30, 205, 151)',
-    // fontWeight: 'bold',
+    fontWeight: 'bold',
     backgroundColor: 'transparent'
   }
 });
 
-AppRegistry.registerComponent('androidTesting', () => DribbleTest);
+AppRegistry.registerComponent('androidTesting', () => SubmitButton);
