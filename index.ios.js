@@ -1,10 +1,3 @@
-
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -28,7 +21,8 @@ export default class DribbleTest extends Component {
       isLoading: false,
       animatedWidth: new Animated.Value(0),
       fill: 0,
-      canShowAnimatedCircle: false
+      canShowAnimatedCircle: false,
+      isReady: false
     }
   }
 
@@ -59,8 +53,8 @@ export default class DribbleTest extends Component {
 
   renderAnimatedCircle = () => {
     const opacity = this.state.animatedWidth.interpolate({
-      inputRange: [0, 0.99, 1],
-      outputRange: [0, 0, 1],
+      inputRange: [0, 0.99, 1, 1.1, 2],
+      outputRange: [0, 0, 1, 0, 0],
       extrapolate: 'clamp'
     })
     return (
@@ -79,16 +73,14 @@ export default class DribbleTest extends Component {
   }
 
   onPressSubmitButton = () => {
-    if (this.state.isLoading) {
-      setTimeout(() => {this.animateWidth(); this.setState({isLoading: false})} , 2000);
-    };
+    if (this.state.isLoading) return ;
     this.setState({isLoading: true}, () => setTimeout(() => { this.refs.circularProgress.performLinearAnimation(100, 1000); this.setState({canShowAnimatedCircle: true}) }, 200 ) );
     Animated.timing(this.state.animatedWidth, {
       toValue: 1,
       duration: 200,
       easing: Easing.linear
     }).start();
-
+    setTimeout(() => {this.setState({isLoading: false, isReady: true}, this.animateWidth)} , 2000)
   }
 
   animateWidth = () => {
@@ -119,11 +111,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    fontFamily: 'proximanova-regular',
+    // fontFamily: 'proximanova-regular',
     color: 'rgb(30, 205, 151)',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     backgroundColor: 'transparent'
   }
 });
 
-AppRegistry.registerComponent('twitterui', () => DribbleTest);
+AppRegistry.registerComponent('androidTesting', () => DribbleTest);

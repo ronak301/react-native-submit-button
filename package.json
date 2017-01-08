@@ -11,7 +11,9 @@
     "http": "0.0.0",
     "react": "15.3.0",
     "react-native": "0.35.0",
+    "react-native-circular-progress": "0.0.8",
     "react-native-digits": "^0.3.0",
+    "react-native-linear-gradient": "^1.5.15",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2"
   },
