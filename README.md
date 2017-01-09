@@ -60,3 +60,8 @@ class SubmitButtonExample extends Component {
 | onSubmit | `function` | | function to call on button press |
 | onSuccess | `function` | | function to call on success |
 | onError | `function` | | function to call on error |
+
+
+# License
+
+ - [MIT](https://github.com/ronak301/react-native-submit-button/blob/master/LICENSE.txt)
