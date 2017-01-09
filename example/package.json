@@ -10,7 +10,7 @@
     "react-native": "0.35.0",
     "react-native-circular-progress": "0.0.8",
     "react-native-linear-gradient": "^1.5.15",
-    "react-native-submit-button": "file:///Users/ronakkothari1/Desktop/Office/example_js/reactnativesamples/and35/react-native-submit-button",
+    "react-native-submit-button": "file:../",
     "react-native-vector-icons": "^3.0.0"
   },
   "jest": {

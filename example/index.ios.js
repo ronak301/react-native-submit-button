@@ -24,10 +24,7 @@ class SubmitButtonExample extends Component {
   render() {
     return (
       <LinearGradient colors={['#F0C27B', '#4B1248']} style={styles.linearGradient}>
-        <SubmitButton
-          width={250}
-          height={100}
-        />
+        <SubmitButton />
       </LinearGradient>
     );
   }
