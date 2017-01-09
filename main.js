@@ -46,7 +46,8 @@ class SubmitButton extends Component {
     onError          : () => {
     },
     buttonState      : 'normal',
-    animationDuration: 200
+    animationDuration: 200,
+    errorColor: '#ff6666'
   };
 
   componentWillReceiveProps( nextProps ) {
@@ -56,18 +57,18 @@ class SubmitButton extends Component {
   }
 
   render() {
-    const { width, height, primaryColor, secondaryColor, buttonStyle } = this.props;
+    const { width, height, primaryColor, secondaryColor, buttonStyle, errorColor } = this.props;
     const buttonWidth = this.state.animatedWidth.interpolate( {
       inputRange : [ 0, 1, 2 ],
       outputRange: [ width, height, width ]
     } );
     const buttonHeight = height || BUTTON_HEIGHT;
-    const readyStateBorderColor = this.props.buttonState === 'success' ? primaryColor : this.props.buttonState === 'error' ? '#ff6666' : primaryColor;
+    const readyStateBorderColor = this.props.buttonState === 'success' ? primaryColor : this.props.buttonState === 'error' ? errorColor : primaryColor;
     let borderColor = primaryColor;
     borderColor = this.state.isLoading ? AnimatingCicleBackgroundColor : readyStateBorderColor;
     borderColor = borderColor || primaryColor;
     const borderWidth = this.state.isLoading ? 4 : 4;
-    const readyStateBgColor = this.props.buttonState === 'success' ? primaryColor : '#ff6666';
+    const readyStateBgColor = this.props.buttonState === 'success' ? primaryColor : errorColor;
     const backgroundColor = this.state.isLoading ? 'transparent' : !this.state.isReady ? secondaryColor : readyStateBgColor;
     const buttonOpacity = this.state.canShowAnimatedCircle ? 0 : 1;
     return (
@@ -166,7 +167,8 @@ SubmitButton.propTypes = {
   iconName           : PropTypes.string, // any name from font awesome lib
   textStyle          : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button text style
   buttonStyle        : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button style
-  animationDuration  : PropTypes.number
+  animationDuration  : PropTypes.number,
+  errorColor: PropTypes.color
 };
 
 const styles = StyleSheet.create( {

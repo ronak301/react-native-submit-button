@@ -32,7 +32,7 @@ class SubmitButtonExample extends Component {
   render() {
     return (
       <LinearGradient colors={['#F0C27B', '#4B1248']} style={styles.linearGradient}>
-        <View style={styles.seperator}><SubmitButton onSubmit={this.onSubmit1} buttonState={this.state.buttonState1} onSuccess={this.onSuccess} /></View>
+        <View style={styles.seperator}><SubmitButton onSubmit={this.onSubmit1} buttonState={this.state.buttonState1} onSuccess={this.onSuccess} buttonText="Login"/></View>
         <View style={styles.seperator}><SubmitButton onSubmit={this.onSubmit2} buttonState={this.state.buttonState2} onSuccess={this.onSuccess} /></View>
       </LinearGradient>
     );
