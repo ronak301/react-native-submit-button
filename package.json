@@ -1,40 +1,28 @@
 {
   "name": "react-native-submit-button",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Animated Submit button.",
+  "main": "main.js",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "react": "15.3.0",
-    "react-native": "0.35.0",
-    "react-native-circular-progress": "0.0.8",
-    "react-native-linear-gradient": "^1.5.15",
-    "react-native-vector-icons": "^3.0.0"
+    "react-native-circular-progress": "0.0.8"
   },
-  "jest": {
-    "preset": "jest-react-native"
-  },
-  "devDependencies": {
-    "babel-jest": "16.0.0",
-    "babel-preset-react-native": "1.9.0",
-    "jest": "16.0.2",
-    "jest-react-native": "16.0.0",
-    "react-test-renderer": "15.3.2"
-  },
-  "description": "Animated Submit button -  - folds when in progress - expands back when its ready",
-  "main": "index.android.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ronak301/react-native-submit-button.git"
   },
   "keywords": [
     "react",
-    "react-native",
-    "submit",
+    "native",
+    "animated",
+    "component",
     "button",
-    "animation",
-    "animated"
+    "submit"
   ],
   "author": "Ronak Kothari",
   "license": "ISC",
