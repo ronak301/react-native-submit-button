@@ -21,24 +21,51 @@ console.disableYellowBox = true;
 
 class SubmitButtonExample extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+     buttonState1: 'normal',
+      buttonState2: 'normal'
+    }
+  }
+
   render() {
     return (
       <LinearGradient colors={['#F0C27B', '#4B1248']} style={styles.linearGradient}>
-        <SubmitButton />
+        <View style={styles.seperator}><SubmitButton onSubmit={this.onSubmit1} buttonState={this.state.buttonState1} onSuccess={this.onSuccess} /></View>
+        <View style={styles.seperator}><SubmitButton onSubmit={this.onSubmit2} buttonState={this.state.buttonState2} onSuccess={this.onSuccess} /></View>
       </LinearGradient>
     );
+  }
+
+  onSubmit1 = () => {
+    // api call
+    setTimeout( () => {this.setState({ buttonState1: 'success' })}, 2000); // if success, else this.setState({ buttonState: 'error' })
+  }
+
+  onSubmit2 = () => {
+    // api call
+    setTimeout( () => {this.setState({ buttonState2: 'error' })}, 2000); // if success, else this.setState({ buttonState: 'error' })
+  };
+
+  onSuccess = () => {
+    // route to next page - may be
   }
 }
 
 const styles = StyleSheet.create( {
   linearGradient : {
     flex           : 1,
-    justifyContent : 'center',
-    alignItems     : 'center',
+    alignItems : 'center',
+    justifyContent: 'center',
+    paddingTop: 30,
     backgroundColor: '#F5FCFF',
   },
   buttonContainer: {
     justifyContent: 'center'
+  },
+  seperator: {
+    marginBottom: 30
   },
   button         : {
     height         : 54,

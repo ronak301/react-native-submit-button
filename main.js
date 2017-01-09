@@ -33,13 +33,27 @@ class SubmitButton extends Component {
   };
 
   static defaultProps = {
-    width: 180,
-    height: 54,
-    primaryColor: 'rgb(30, 205, 151)',
-    secondaryColor: 'white',
-    buttonText: 'Submit',
-    iconName: 'check'
+    width            : 180,
+    height           : 54,
+    primaryColor     : 'rgb(30, 205, 151)',
+    secondaryColor   : 'white',
+    buttonText       : 'Submit',
+    iconName         : 'check',
+    onSubmit         : () => {
+    },
+    onSuccess        : () => {
+    },
+    onError          : () => {
+    },
+    buttonState      : 'normal',
+    animationDuration: 200
   };
+
+  componentWillReceiveProps( nextProps ) {
+    if ( nextProps.buttonState === 'success' || nextProps.buttonState === 'error' ) {
+      this.setState( { isLoading: false, isReady: true, canShowAnimatedCircle: false }, this.animateWidthBackToOriginal )
+    }
+  }
 
   render() {
     const { width, height, primaryColor, secondaryColor, buttonStyle } = this.props;
@@ -48,14 +62,19 @@ class SubmitButton extends Component {
       outputRange: [ width, height, width ]
     } );
     const buttonHeight = height || BUTTON_HEIGHT;
-    const borderColor = this.state.isLoading ? AnimatingCicleBackgroundColor : primaryColor;
+    const readyStateBorderColor = this.props.buttonState === 'success' ? primaryColor : this.props.buttonState === 'error' ? '#ff6666' : primaryColor;
+    let borderColor = primaryColor;
+    borderColor = this.state.isLoading ? AnimatingCicleBackgroundColor : readyStateBorderColor;
+    borderColor = borderColor || primaryColor;
     const borderWidth = this.state.isLoading ? 4 : 4;
-    const backgroundColor = this.state.isLoading ? 'transparent' : !this.state.isReady ? secondaryColor : primaryColor;
+    const readyStateBgColor = this.props.buttonState === 'success' ? primaryColor : '#ff6666';
+    const backgroundColor = this.state.isLoading ? 'transparent' : !this.state.isReady ? secondaryColor : readyStateBgColor;
     const buttonOpacity = this.state.canShowAnimatedCircle ? 0 : 1;
     return (
       <Animated.View style={[styles.buttonContainer, {width: buttonWidth }]}>
-        <TouchableOpacity style={[styles.button, buttonStyle, {height: buttonHeight ,borderWidth: borderWidth, borderColor: borderColor, backgroundColor: backgroundColor, opacity: buttonOpacity}]}
-                          onPress={this.onPressSubmitButton}>
+        <TouchableOpacity
+          style={[styles.button, buttonStyle, {height: buttonHeight ,borderWidth: borderWidth, borderColor: borderColor, backgroundColor: backgroundColor, opacity: buttonOpacity}]}
+          onPress={this.onPressSubmitButton}>
           {this.renderBody()}
         </TouchableOpacity>
         {this.renderAnimatedCircle()}
@@ -65,6 +84,7 @@ class SubmitButton extends Component {
 
   renderBody = () => {
     const { buttonTextWhenReady } = this.props;
+    const iconName = this.props.buttonState === 'success' ? this.props.iconName : 'times';
     const textColor = this.state.isReady ? this.props.secondaryColor : this.props.primaryColor;
     const textOpacity = this.state.animatedWidth.interpolate( {
       inputRange : [ 0, 0.5, 1, 1.5, 2 ],
@@ -75,15 +95,15 @@ class SubmitButton extends Component {
       return (
         <Animated.Text style={[styles.text, textStyle, {opacity: textOpacity, color: textColor}]}>{this.props.buttonText}</Animated.Text>
       );
-    } else if (buttonTextWhenReady) {
+    } else if ( buttonTextWhenReady ) {
       return (
         <Animated.Text style={[styles.text, textStyle, {opacity: textOpacity, color: textColor}]}>{buttonTextWhenReady}</Animated.Text>
       );
     }
     return (
-      <Icon name={this.props.iconName} size={26} color={this.props.secondaryColor}/>
+      <Icon name={iconName} size={26} color={this.props.secondaryColor}/>
     );
-  }
+  };
 
   renderAnimatedCircle = () => {
     const opacity = this.state.animatedWidth.interpolate( {
@@ -108,43 +128,45 @@ class SubmitButton extends Component {
 
   onPressSubmitButton = () => {
     if ( this.state.isLoading || this.state.isReady ) return;
+    this.props.onSubmit();
     this.setState( { isLoading: true }, () => setTimeout( () => {
       this.setState( { fill: 100, canShowAnimatedCircle: true } )
-    }, 200 ) );
+    }, this.props.animationDuration ) );
     Animated.timing( this.state.animatedWidth, {
       toValue : 1,
-      duration: 200,
+      duration: this.props.animationDuration,
       easing  : Easing.linear
     } ).start();
-    setTimeout( () => {
-      this.setState( { isLoading: false, isReady: true }, this.animateWidth )
-    }, 2000 );
-    setTimeout( () => {
-      this.setState( { isLoading: false, isReady: false, fill: 0, canShowAnimatedCircle: false }, this.animateWidth )
-    }, 4000 );
   };
 
-  animateWidth = () => {
+  animateWidthBackToOriginal = () => {
+    const cb = this.props.buttonState === 'success' ? this.props.onSuccess : this.props.onError;
     Animated.timing( this.state.animatedWidth, {
       toValue : 2,
-      duration: 200,
+      duration: this.props.animationDuration,
       easing  : Easing.linear
-    } ).start();
+    } ).start( cb() );
   }
 }
 
 SubmitButton.propTypes = {
 
-  primaryColor: PropTypes.string,
+  primaryColor  : PropTypes.string,
   secondaryColor: PropTypes.string,
 
-  width: PropTypes.number, // button width
-  height: PropTypes.number, // button height
-  buttonText: PropTypes.string, // button text. eg: Submit
+  onSubmit   : PropTypes.func, // function to be executed on button press.
+  buttonState: PropTypes.oneOfType( [ 'normal', 'success', 'error' ] ),
+  onSuccess  : PropTypes.func, // on success callback
+  onError    : PropTypes.func, // on error callback
+
+  width              : PropTypes.number, // button width
+  height             : PropTypes.number, // button height
+  buttonText         : PropTypes.string, // button text. eg: Submit
   buttonTextWhenReady: PropTypes.string, // to show when success.Either pass this or pass icon name (any name from fontawesome lib)
-  iconName: PropTypes.string, // any name from fontawesome lib
-  textStyle: PropTypes.oneOfType([PropTypes.number, PropTypes.object]), // button text style
-  buttonStyle: PropTypes.oneOfType([PropTypes.number, PropTypes.object]) // button style
+  iconName           : PropTypes.string, // any name from font awesome lib
+  textStyle          : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button text style
+  buttonStyle        : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button style
+  animationDuration  : PropTypes.number
 };
 
 const styles = StyleSheet.create( {
