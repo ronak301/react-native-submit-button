@@ -47,7 +47,7 @@ class SubmitButton extends Component {
     },
     buttonState      : 'normal',
     animationDuration: 200,
-    errorColor: '#ff6666'
+    errorColor       : '#ff6666'
   };
 
   componentWillReceiveProps( nextProps ) {
@@ -168,7 +168,7 @@ SubmitButton.propTypes = {
   textStyle          : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button text style
   buttonStyle        : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button style
   animationDuration  : PropTypes.number,
-  errorColor: PropTypes.color
+  errorColor         : PropTypes.color
 };
 
 const styles = StyleSheet.create( {
