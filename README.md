@@ -39,6 +39,7 @@ class SubmitButtonExample extends Component {
 |---------------|----------|--------------|----------------------------------------------------------------|
 | primaryColor | `string` | `rgb(30, 205, 151)` | optional user-defined primary color |
 | secondaryColor | `string` | `white` | optional user-defined secondary color |
+| buttonState | `string` | `normal` | button state can be one of `normal`, `success`, `error` |
 | width | `number` | 180 | optional user-defined width for button |
 | height | `number` | 54 | optional user-defined height for button |
 | buttonText | `string` | 'Submit' | optional user-defined text on button |
@@ -46,3 +47,8 @@ class SubmitButtonExample extends Component {
 | iconName | `string` | 'check' | optional any icon name from fontello icons , to be shown once we got success. |
 | textStyle | `object` | | optional text styles to override existing styles |
 | buttonStyle | `object` | | optional button styles to override existing styles |
+| animationDuration | `number` | 200 | number in `ms`. Time to fold button. |
+| errorColor | `string` |  `#ff6666` | error color |
+| onSubmit | `function` | | function to call on button press |
+| onSuccess | `function` | | function to call on success |
+| onError | `function` | | function to call on error |
