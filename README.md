@@ -11,10 +11,18 @@ An Animated Submit Button. Works on both android and IOS.
 https://dribbble.com/shots/1426764-Submit-Button
 
 
+## Running Example
+
+ - git clone `https://github.com/ronak301/react-native-submit-button.git` 
+ - cd example
+ - npm install
+ - rnpm link
+ - react-native run-ios
+
 ## Installation
 
  - npm install --save react-native-submit-button
- - if RN > 0.29 `react-native link` else `rnpm link`
+ - if RN > 0.29 `react-native link` else `rnpm link` 
 
 ## Usage
 
