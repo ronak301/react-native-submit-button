@@ -155,10 +155,7 @@ SubmitButton.propTypes = {
   primaryColor  : PropTypes.string,
   secondaryColor: PropTypes.string,
 
-  onSubmit   : PropTypes.func, // function to be executed on button press.
   buttonState: PropTypes.oneOfType( [ 'normal', 'success', 'error' ] ),
-  onSuccess  : PropTypes.func, // on success callback
-  onError    : PropTypes.func, // on error callback
 
   width              : PropTypes.number, // button width
   height             : PropTypes.number, // button height
@@ -168,7 +165,11 @@ SubmitButton.propTypes = {
   textStyle          : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button text style
   buttonStyle        : PropTypes.oneOfType( [ PropTypes.number, PropTypes.object ] ), // button style
   animationDuration  : PropTypes.number,
-  errorColor         : PropTypes.color
+  errorColor         : PropTypes.color,
+
+  onSubmit   : PropTypes.func, // function to be executed on button press.
+  onSuccess  : PropTypes.func, // on success callback
+  onError    : PropTypes.func // on error callback
 };
 
 const styles = StyleSheet.create( {
