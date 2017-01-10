@@ -64,4 +64,4 @@ class SubmitButtonExample extends Component {
 
 # License
 
- - [MIT](https://github.com/ronak301/react-native-submit-button/blob/master/LICENSE.txt)
+ - [MIT](https://github.com/ronak301/react-native-submit-button/blob/master/LICENSE.txt).  © Ronak Kothari
