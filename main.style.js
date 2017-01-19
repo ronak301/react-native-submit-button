@@ -14,7 +14,7 @@ export default StyleSheet.create({
   },
   text           : {
     fontSize       : 22,
-    fontFamily     : 'proximanova-regular',
+    // fontFamily     : 'proximanova-regular',
     color          : 'rgb(30, 205, 151)',
     fontWeight     : 'bold',
     backgroundColor: 'transparent'
