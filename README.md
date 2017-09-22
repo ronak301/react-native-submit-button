@@ -16,7 +16,7 @@ https://dribbble.com/shots/1426764-Submit-Button
  - git clone `https://github.com/ronak301/react-native-submit-button.git` 
  - cd example
  - npm install
- - rnpm link
+ - react-native link
  - react-native run-ios
 
 ## Installation
