@@ -12,7 +12,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react-native-circular-progress": "git+https://github.com/bgryszko/react-native-circular-progress.git#85eb3c4d781cd70b281c0ff080cb7639f8a957f4",
-    "react-native-vector-icons": "3.0.0"
+    "react-native-vector-icons": "^4.4.2"
   },
   "repository": {
     "type": "git",
