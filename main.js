@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -46,7 +47,7 @@ class SubmitButton extends Component {
 
   componentWillReceiveProps(nextProps) {
     const buttonState = nextProps.buttonState;
-    if (buttonState === 'success' || buttonState === 'error') {
+    if ((buttonState === 'success' || buttonState === 'error') && this.props.buttonState !== buttonState) {
       this.setState(
         { isLoading: false, isReady: true, canShowAnimatedCircle: false },
         this.animateBackToOriginal
