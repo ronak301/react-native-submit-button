@@ -1,6 +1,6 @@
 {
   "name": "react-native-submit-button",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Animated submit button for React Native: folds into a progress ring while loading, then expands with a success or error state. Reanimated 4, New Architecture, TypeScript.",
   "source": "./src/index.tsx",
   "main": "./lib/module/index.js",

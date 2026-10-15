@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1
+
+No API or behaviour change.
+
+- Source split into focused modules: `useSubmitStatus` (state), `useSubmitAnimation` (Reanimated), and small components for the label, spinner and icons.
+- Example app: `uuid` pinned to 11.1.1 for a security fix; dependency lockfiles refreshed.
+
 ## 2.0.0
 
 A full rewrite for current React Native.
