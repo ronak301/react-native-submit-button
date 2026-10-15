@@ -1,35 +1,112 @@
 {
   "name": "react-native-submit-button",
-  "version": "1.1.0",
-  "description": "Animated Submit button.",
-  "main": "main.js",
-  "directories": {
-    "example": "example"
+  "version": "2.0.0",
+  "description": "Animated submit button for React Native: folds into a progress ring while loading, then expands with a success or error state. Reanimated 4, New Architecture, TypeScript.",
+  "source": "./src/index.tsx",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
   },
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/*.test.*"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "bob build",
+    "prepare": "bob build",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "example": "npm --prefix example run"
   },
-  "dependencies": {
-    "prop-types": "^15.6.0",
-    "react-native-circular-progress": "git+https://github.com/bgryszko/react-native-circular-progress.git#85eb3c4d781cd70b281c0ff080cb7639f8a957f4",
-    "react-native-vector-icons": "^4.4.2"
-  },
+  "keywords": [
+    "react-native",
+    "button",
+    "submit",
+    "animated",
+    "loading",
+    "progress",
+    "reanimated",
+    "new-architecture",
+    "ios",
+    "android"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ronak301/react-native-submit-button.git"
   },
-  "keywords": [
-    "react",
-    "native",
-    "animated",
-    "component",
-    "button",
-    "submit"
-  ],
-  "author": "Ronak Kothari",
-  "license": "ISC",
+  "author": "Ronak Kothari <ronakkothari301@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ronak301/react-native-submit-button/issues"
   },
-  "homepage": "https://github.com/ronak301/react-native-submit-button#readme"
+  "homepage": "https://github.com/ronak301/react-native-submit-button#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.78.0",
+    "react-native-reanimated": ">=4.0.0",
+    "react-native-svg": ">=15.0.0",
+    "react-native-worklets": ">=0.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@react-native/babel-preset": "0.86.3",
+    "@react-native/jest-preset": "^0.86.3",
+    "@testing-library/react-native": "^14.1.0",
+    "@types/jest": "^30.0.0",
+    "@types/react": "~19.2.2",
+    "jest": "^30.5.2",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-builder-bob": "^0.43.2",
+    "react-native-reanimated": "4.5.1",
+    "react-native-svg": "15.15.4",
+    "react-native-worklets": "0.10.1",
+    "test-renderer": "^1.0.0",
+    "typescript": "~6.0.3"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/",
+      "<rootDir>/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-reanimated|react-native-worklets|react-native-svg)/)"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "none"
+  }
 }

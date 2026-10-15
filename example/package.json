@@ -1,48 +1,25 @@
 {
-  "name": "react-native-submit-button-example",
-  "version": "0.0.1",
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
-  },
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.ts",
   "dependencies": {
-    "react": "15.3.0",
-    "react-native": "0.35.0",
-    "react-native-circular-progress": "0.0.8",
-    "react-native-linear-gradient": "^1.5.15",
-    "react-native-submit-button":
-      "file:///Users/ronakkothari1/Desktop/Office/example_js/reactnativesamples/and35/react-native-submit-button",
-    "react-native-vector-icons": "^3.0.0"
-  },
-  "jest": {
-    "preset": "jest-react-native"
+    "expo": "~57.0.29",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-svg": "15.15.4",
+    "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
-    "babel-jest": "16.0.0",
-    "babel-preset-react-native": "1.9.0",
-    "jest": "16.0.2",
-    "jest-react-native": "16.0.0",
-    "react-test-renderer": "15.3.2"
+    "@types/react": "~19.2.2",
+    "typescript": "~6.0.3"
   },
-  "description":
-    "Animated Submit button -  - folds when in progress - expands back when its ready",
-  "main": "index.ios.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ronak301/react-native-submit-button.git"
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
   },
-  "keywords": [
-    "react",
-    "react-native",
-    "submit",
-    "button",
-    "animation",
-    "animated"
-  ],
-  "author": "Ronak Kothari",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ronak301/react-native-submit-button/issues"
-  },
-  "homepage": "https://github.com/ronak301/react-native-submit-button#readme"
+  "private": true
 }
