@@ -2,7 +2,11 @@
 
 An animated submit button for React Native. It folds into a progress ring while your request runs, then unfolds into a success or error state.
 
-![Animated submit button](docs/demo.gif)
+<p align="center">
+  <img src="docs/demo.gif" alt="Animated submit button" height="420" />
+  &nbsp;&nbsp;
+  <img src="docs/states.png" alt="Idle, loading, success, error and custom states" height="420" />
+</p>
 
 Inspired by [this Dribbble shot](https://dribbble.com/shots/1426764-Submit-Button).
 
